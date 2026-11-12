@@ -63,7 +63,7 @@ function frameFor(file){
   }
   return frames[file];
 }
-let current='hangngay';
+let current='nhatky';
 function show(id){
   current=id;
   const m=MENU.find(x=>x.id===id);
@@ -73,7 +73,7 @@ function show(id){
   nav.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
 }
 MENU.forEach(m=>{const b=document.createElement('button');b.dataset.id=m.id;b.textContent=m.icon+' '+m.label;b.onclick=()=>show(m.id);nav.appendChild(b);});
-show('hangngay');
+show('nhatky');
 
 // ==ENGINE-START==
 const DBS=['KawaiiGoalsDB','KeHoachThangDB','MucTieuDB','HangNgayDB','NhatKy2026DB','VisionBoardDB'];
@@ -266,12 +266,12 @@ async function doSync(initial){
 async function startSynced(){
   $('gate').style.display='none';$('busy').style.display='flex';$('busy').textContent='☁️ Đang đồng bộ dữ liệu…';
   await doSync(true);
-  $('busy').style.display='none';show('hangngay');
+  $('busy').style.display='none';show('nhatky');
   setInterval(()=>doSync(false),30000);
   document.addEventListener('visibilitychange',()=>{doSync(false);});
 }
 async function boot(){
-  if(!SUPA_URL||!SUPA_KEY){show('hangngay');return;}
+  if(!SUPA_URL||!SUPA_KEY){show('nhatky');return;}
   if(typeof supabase==='undefined'){alert('Không tải được thư viện đăng nhập. Kiểm tra kết nối mạng rồi tải lại trang.');return;}
   $('cloud').style.display='inline-flex';
   sb=supabase.createClient(SUPA_URL,SUPA_KEY);
